@@ -78,14 +78,14 @@ int random_value(int min, int max) {
 
 void my_homekit_report() {
 
-	float temperature_value = random_value(10, 30); // FIXME, read your real sensor here.
-	// float temperature_value = dht.readTemperature(); //Remove comment if working.
+	// float temperature_value = random_value(10, 30); // FIXME, read your real sensor here.
+	float temperature_value = dht.readTemperature(); //Remove comment if working.
 	cha_current_temperature.value.float_value = temperature_value;
 	LOG_D("Current temperature: %.1f", temperature_value);
 	homekit_characteristic_notify(&cha_current_temperature, cha_current_temperature.value);
 
-	float humidity_value = random_value(0,100); //Humidity Sensor FIXME.
-	//float humidity_value = dht.readHumidity(); //Remove comment if working.
+	// float humidity_value = random_value(0,100); //Humidity Sensor FIXME.
+	float humidity_value = dht.readHumidity(); //Remove comment if working.
 	cha_humidity.value.float_value = humidity_value;
 	LOG_D("Current humidity: %.1f", humidity_value);
 	homekit_characteristic_notify(&cha_humidity, cha_humidity.value);
